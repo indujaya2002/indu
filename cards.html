@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style>
+		body {
+			color: red;
+			background: lightyellow;
+		}
+        h1 {
+            color: purple;
+        }
+
+		:root {
+			--offset-before: 8px;
+			--offset-after: 16px;
+		}
+
+		.card {
+			position: relative;
+			width: 400px;
+			margin: 60px auto;
+		}
+
+		.card::before,
+		.card::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+
+		.card::before,
+		.card::after,
+		.card .card-inner {
+			background-color: lightgreen;
+			border: 1px solid lightpink;
+			transition: transform 0.5s;
+		}
+
+		.card::before,
+		.card-inner {
+			z-index: 1;
+		}
+
+		.card-inner {
+			position: relative;
+			padding: 4rem;
+		}
+        .cards:hover {
+            transform: translate(5px, 5px);
+        }
+  
+        .cards:hover::before {
+            transform: translate(-5px, -5px);
+        }
+  
+        .cards:hover::after {
+            transform: translate(-10px, -10px);
+        }
+
+		/*Diagonal => Left*/
+		.cards-diagonal::before {
+			transform: translate(calc(-1 * 8px),
+					calc(-1 * 8px));
+		}
+
+		.cards-diagonal::after {
+			transform: translate(calc(-1 * 16px),
+					calc(-1 * 16px));
+		}
+
+		.cards-diagonal:hover::before {
+			transform: translate(8px, 8px);
+		}
+
+		.cards-diagonal:hover::after {
+			transform: translate(16px, 16px);
+		}
+
+		/*Rotate => Left */
+		.cards-rotate::before,
+		.cards-rotate::after {
+			transform-origin: 50% 100%;
+		}
+
+		.cards-rotate:hover {
+			transform: translate(2.5px, 0) rotate(2.5deg);
+		}
+
+		.cards-rotate:hover::before {
+			transform: translate(2.5px, 0) rotate(2.5deg);
+		}
+
+		.cards-rotate:hover::after {
+			transform: translate(5px, 0) rotate(5deg);
+		}
+        /*Stacked => Up*/
+        .cards-up::before,
+        .cards-up::after {
+            transform-origin: center bottom;
+        }
+  
+        .cards-up:hover {
+            transform: translate(0, -5px);
+        }
+  
+        .cards-up:hover::before {
+            transform: translate(0, 5px) scale(0.95);
+        }
+  
+        .cards-up:hover::after {
+            transform: translate(0, 10px) scale(0.90);
+        }
+  
+        /*Stacked => Right */
+        .cards-right::before,
+        .cards-right::after {
+            transform-origin: left center;
+        }
+  
+        .cards-right:hover {
+            transform: translate(5px, 0);
+        }
+  
+        .cards-right:hover::before {
+            transform: translate(-10px, 0) scale(0.95);
+        }
+
+  
+        .cards-right:hover::after {
+            transform: translate(-10px, 0) scale(0.90);
+        }
+
+	</style>
+</head>
+
+<body>
+	<center>
+        <h1>Welcome to GeeksforGeeks</h1>
+        <div class="card-container">
+            <div class="card cards">
+                <div class="card-inner">
+                    <h1>Down-Right</h1>
+                    <h3 class="card-title">
+                        GeeksforGeeks
+                    </h3>
+                    <div class="card-body">
+                        A Complete Portal for Geeks.
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="card-container">
+			<div class="card cards-diagonal">
+				<div class="card-inner">
+					<h1>Diagonal-Left</h1>
+					<h3 class="card-title">GeeksforGeeks</h3>
+					<div class="card-body">
+						A Complete Portal for Geeks.
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card-container">
+			<div class="card cards-rotate">
+				<div class="card-inner">
+					<h1>Rotate-Left</h1>
+					<h3 class="card-title">GeeksforGeeks</h3>
+					<div class="card-body">
+						A Complete Portal for Geeks.
+					</div>
+				</div>
+			</div>
+		</div>
+        <div class="card-container">
+            <div class="card cards-up">
+                <div class="card-inner">
+                    <h1>Stacked-Up</h1>
+                    <h3 class="card-title">GeeksforGeeks</h3>
+                    <div class="card-body">
+                        A Complete Portal for Geeks.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="card cards-right">
+                <div class="card-inner">
+                    <h1>Stacked-Right</h1>
+                    <h3 class="card-title">GeeksforGeeks</h3>
+                    <div class="card-body">
+                        A Complete Portal for Geeks.
+                    </div>
+                </div>
+            </div>
+        </div>
+	</center>
+</body>
+
+</html>
